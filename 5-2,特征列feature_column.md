@@ -178,6 +178,10 @@ feature_columns.append(crossed_feature)
 ```
 
 ```python
+feature_columns
+```
+
+```python
 #================================================================================
 # 三，定义模型
 #================================================================================
@@ -202,7 +206,9 @@ printlog("step4: train model...")
 model.compile(optimizer='adam',
               loss='binary_crossentropy',
               metrics=['accuracy'])
+```
 
+```python
 history = model.fit(ds_train,
           validation_data=ds_test,
           epochs=10)

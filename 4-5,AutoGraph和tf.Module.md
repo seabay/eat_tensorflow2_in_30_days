@@ -225,9 +225,6 @@ print(mymodule.variables)
 tf.saved_model.save(mymodule,"./data/mymodule",
     signatures = {"serving_default":mymodule.addprint})
 
-#加载模型
-mymodule2 = tf.saved_model.load("./data/mymodule")
-mymodule2.addprint(tf.constant(5.0))
 ```
 
 ```
@@ -236,7 +233,9 @@ INFO:tensorflow:Assets written to: ./data/mymodule/assets
 ```
 
 ```python
-
+#加载模型
+mymodule2 = tf.saved_model.load("./data/mymodule")
+mymodule2.addprint(tf.constant(5.0))
 ```
 
 ### 三，tf.Module和tf.keras.Model，tf.keras.layers.Layer

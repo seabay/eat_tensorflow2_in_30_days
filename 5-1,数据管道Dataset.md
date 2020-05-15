@@ -31,12 +31,12 @@ import tensorflow as tf
 import numpy as np 
 from sklearn import datasets 
 iris = datasets.load_iris()
+```
 
-
+```python
 ds1 = tf.data.Dataset.from_tensor_slices((iris["data"],iris["target"]))
 for features,label in ds1.take(5):
     print(features,label)
-
 ```
 
 ```
@@ -48,7 +48,15 @@ tf.Tensor([5.  3.6 1.4 0.2], shape=(4,), dtype=float64) tf.Tensor(0, shape=(), d
 ```
 
 ```python
+type(iris)
+```
 
+```python
+?iris
+```
+
+```python
+type(iris["data"])
 ```
 
 **2,从 Pandas DataFrame构建数据管道**
@@ -60,10 +68,21 @@ from sklearn import datasets
 import pandas as pd
 iris = datasets.load_iris()
 dfiris = pd.DataFrame(iris["data"],columns = iris.feature_names)
+```
+
+```python
+dfiris.head(1)
+```
+
+```python
+
+```
+
+```python
 ds2 = tf.data.Dataset.from_tensor_slices((dfiris.to_dict("list"),iris["target"]))
 
 for features,label in ds2.take(3):
-    print(features,label)
+    print(features,label, '\n')
 ```
 
 ```
@@ -137,7 +156,7 @@ ds4 = tf.data.experimental.make_csv_dataset(
       ignore_errors=True)
 
 for data,label in ds4.take(2):
-    print(data,label)
+    print(data,label, '\n')
 ```
 
 ```
@@ -578,7 +597,7 @@ tf.Tensor(2, shape=(), dtype=int64)
 #shard:采样，从某个位置开始隔固定距离采样一个元素。
 
 ds = tf.data.Dataset.range(12)
-ds_shard = ds.shard(3,index = 1)
+ds_shard = ds.shard(3,index = 1)  # n%3==1, 从 1 开始，每隔3个位置
 
 for x in ds_shard:
     print(x)
